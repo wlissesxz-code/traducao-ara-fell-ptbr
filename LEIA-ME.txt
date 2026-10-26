@@ -1,0 +1,16 @@
+﻿ARA FELL: ENHANCED EDITION — TRADUÇÃO PT-BR 6.1.0
+
+1. Extraia todo o ZIP.
+2. Feche o jogo.
+3. Abra Instalar.cmd e selecione a pasta onde está Ara Fell.exe.
+4. Clique em Verificar e depois Instalar tradução.
+5. No jogo, escolha Português (Brasil) nas opções.
+
+Windows / Enhanced Edition. GOG testada; Steam depende da verificação dos arquivos, ainda sem teste independente. Builds diferentes são recusadas antes de qualquer alteração.
+
+Restaurar: selecione English no jogo, feche-o e use Restaurar original no instalador. Não exclua as cópias .original-antes-ptbr.bak. Os jogos salvos não são alterados.
+
+Projeto, instruções e suporte:
+https://github.com/wlissesxz-code/traducao-ara-fell-ptbr
+
+Tradução não oficial. Requer o jogo instalado. Leia README.md para os detalhes.

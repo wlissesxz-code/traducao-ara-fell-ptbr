@@ -1,0 +1,45 @@
+{
+  "version": "6.1.0",
+  "game": "Ara Fell: Enhanced Edition",
+  "platform": "Windows x64",
+  "tested_store": "GOG",
+  "steam_status": "Discovery supported; file-hash compatibility required; not independently playtested",
+  "files": [
+    {
+      "path": "data.unity3d",
+      "original": "3F0DA51C110895B7D1B186DE480A444541B7C800FF4A8B38FB1423D2D6A449D9",
+      "updated": "66313CA45399524A7D618B5D0D5FE8282D2092518D25C105EEB4C9206DE85F95",
+      "previous": [
+        "B40B2F5E471E7546D3116F50445BCC11CDF30BB2BE6AEC41929034B2FFCAB39E",
+        "734181D1D4E20A3F472ECD3689246DCC6E46740CB17FD953B866B19292D0E8E4"
+      ],
+      "patch": "patches/data.vcdiff"
+    },
+    {
+      "path": "Managed/Assembly-CSharp.dll",
+      "original": "ED3BEE1DCCE72E3F52EDFBA39002137AD3E56F82D886FEDB4815E972AF63E8DA",
+      "updated": "6A26CD650DB9765F58F4695E4603E1260F6D993BFD5DCE084A00582200B7D84F",
+      "previous": [
+        "481B32E55BA735DB3ACDA8D5A525D650CE6E63DC16072C6ACD56EB59F8D012E1"
+      ],
+      "patch": "patches/assembly.vcdiff"
+    }
+  ],
+  "payloads": [
+    {
+      "path": "bin/xdelta3.exe",
+      "sha256": "732980D52F9220DC81817CCDD0C295EADCE8A0048A24C2A771A73F791AC824E9",
+      "size": 340992
+    },
+    {
+      "path": "patches/data.vcdiff",
+      "sha256": "AA6CA589980CC190B20FAF8515C0F05812D794B513223D9E287BACFC0C2BF7E7",
+      "size": 151073193
+    },
+    {
+      "path": "patches/assembly.vcdiff",
+      "sha256": "CBD6BC55C4A3ACFE7C1E8F8D9C51CCE9C03B85222D0DF6717696B67D51509249",
+      "size": 415734
+    }
+  ]
+}

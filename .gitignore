@@ -1,0 +1,9 @@
+bin/*.exe
+patches/*.vcdiff
+*.zip
+*.bak
+*.log
+logs/
+work/
+test-output/
+traducao/pt-BR.json
