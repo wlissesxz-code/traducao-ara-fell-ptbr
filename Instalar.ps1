@@ -47,7 +47,7 @@ $status.ReadOnly=$true
 $status.ScrollBars='Vertical'
 $status.BackColor=[Drawing.Color]::White
 $status.SetBounds(22,175,680,110)
-$status.Text="Versão 6.1.0 - tradução completa.`r`nGOG: testada. Steam: detecção disponível; aplicação condicionada à verificação dos arquivos.`r`nO patch recusa versões diferentes, sem alterar a instalação."
+$status.Text="Versão 6.1.1 - tradução completa.`r`nGOG: testada. Steam: detecção disponível; aplicação condicionada à verificação dos arquivos.`r`nO patch recusa versões diferentes, sem alterar a instalação."
 $form.Controls.Add($status)
 $buttons=@()
 foreach ($item in @(@('Instalar tradução','Instalar',22,210),@('Verificar','Verificar',244,130),@('Restaurar original','Restaurar',386,170))) {

@@ -1,5 +1,14 @@
 # Histórico
 
+## 6.1.1
+
+- Corrige falas que ultrapassavam a borda da janela.
+- Diálogos em português usam a variante proporcional Softsquare, com o mesmo tamanho configurado e estilo pixelado.
+- Preserva a fonte e o comportamento de inglês e japonês.
+- Ajusta duas linhas remanescentes e acrescenta verificação do espaço com a fonte efetivamente usada.
+- Caso do print reproduzido na versão anterior e conferido com a frase completa na versão corrigida.
+- Mantém o processamento nativo de diálogos e escolhas, sem a tentativa experimental de quebra automática.
+
 ## 6.1.0
 
 - Pacote público de distribuição por patch diferencial.

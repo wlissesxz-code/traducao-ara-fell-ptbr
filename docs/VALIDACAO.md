@@ -1,4 +1,14 @@
-# Validação da versão 6.1.0
+# Validação da versão 6.1.1
+
+## Correção de texto cortado
+
+O verificador anterior media a fonte Pinch, usada em menus, enquanto os diálogos usavam Softsquare Mono. Esse erro deixou passar linhas largas demais. A versão 6.1.1 usa Softsquare proporcional somente nos diálogos em português, preserva o tamanho configurado e valida as linhas com os avanços dessa fonte. Duas linhas adicionais foram encurtadas.
+
+A frase relatada foi reproduzida numa cópia de teste e apareceu inteira dentro da caixa com a correção. O diálogo seguinte continuou normalmente, com acentos. Não foram alterados os mecanismos de paginação, animação ou escolha do jogo. Inglês e japonês mantêm suas fontes.
+
+A tentativa experimental de quebra automática apresentou uma regressão e foi descartada; esse código não integra a versão distribuída.
+
+## Validação anterior da versão 6.1.0
 
 A versão 6.1.0 distribui o mesmo conteúdo traduzido da versão 6, com novo instalador portátil e patches diferenciais.
 

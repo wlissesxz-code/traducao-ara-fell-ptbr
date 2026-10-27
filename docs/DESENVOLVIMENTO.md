@@ -19,3 +19,7 @@ A descoberta Steam lê as bibliotecas e o manifesto do app 440540. A descoberta 
 ## Releases
 
 Distribua um ZIP com `Instalar.cmd`, `Instalar.ps1`, `lib/`, `bin/xdelta3.exe`, `patches/`, `README.md`, `LEIA-ME.txt` e os avisos de licença em `docs/`. Mantenha os `.vcdiff` e executáveis fora do histórico Git. Publique também `SHA256SUMS.txt` para o ZIP.
+
+## Fonte dos diálogos em português
+
+A versão 6.1.1 clona o dicionário inglês para o português e substitui apenas ChatText por Softsquare 18. Não altera ProcessText nem compartilha a alteração com inglês. `tools/Patch-ChatFont.ps1` aplica essa mudança sobre a DLL traduzida da versão 6/6.1.0, usando Mono.Cecil fornecido pelo desenvolvedor. `tools/dialogue-font-profile.json` registra os avanços usados na conferência. `tools/Check-DialogueLayout.py` verifica as linhas numéricas do catálogo contra a largura conservadora com retrato.

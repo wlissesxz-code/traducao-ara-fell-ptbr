@@ -4,7 +4,7 @@ Tradução comunitária completa para português do Brasil, com português como 
 
 **[BAIXAR O INSTALADOR — última versão](https://github.com/wlissesxz-code/traducao-ara-fell-ptbr/releases/latest)**
 
-Baixe o arquivo **Ara-Fell-PTBR-6.1.0-Windows.zip** em **Assets**. Os arquivos automáticos “Source code” são o código do projeto e não incluem os patches necessários para instalar.
+Baixe o arquivo **Ara-Fell-PTBR-6.1.1-Windows.zip** em **Assets**. Os arquivos automáticos “Source code” são o código do projeto e não incluem os patches necessários para instalar.
 
 ## Instalação
 
