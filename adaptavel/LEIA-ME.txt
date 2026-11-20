@@ -1,0 +1,37 @@
+﻿ARA FELL — INSTALADOR ADAPTÁVEL PT-BR 6.2 (VERSÃO DE TESTE)
+
+1. Extraia todo este ZIP em uma pasta.
+2. Feche o jogo e abra Instalar.cmd.
+3. Escolha a pasta da Enhanced Edition (RPG_RT.exe ou Ara Fell.exe).
+4. Clique em Instalar tradução e aguarde alguns minutos. A janela pode ficar temporariamente sem responder durante o preparo.
+5. Abra o jogo e selecione Português (Brasil) nas opções de idioma.
+
+Não exige Python instalado nem internet. Reserve aproximadamente 5 GB livres na unidade do jogo para o preparo e os backups. Requer Windows de 64 bits; aceita o jogo de 32 ou 64 bits quando a estrutura é compatível.
+
+O QUE MUDA
+O pacote lê os arquivos da sua instalação e aplica somente textos, caracteres acentuados e a opção de português. Não substitui bibliotecas da loja, executáveis, componentes de autenticação nem recursos de outras versões.
+A identificação não depende do SHA-256 de uma build específica. Ainda verifica a estrutura Unity, os pontos de alteração do sistema de idiomas e o conteúdo original das falas.
+Se um texto novo não tiver correspondência segura, ele fica em inglês. Se houver mais de 2% de linhas desconhecidas ou uma estrutura incompatível, nada é instalado.
+A versão clássica e a demo em RPG Maker não são suportadas.
+
+BACKUP E RESTAURAÇÃO
+As cópias originais ficam junto dos arquivos alterados, com final .antes-ptbr-adaptavel.bak.
+Não apague esses backups nem o arquivo .ptbr-adaptavel.json.
+Para restaurar: selecione English no jogo, feche-o, abra o instalador e clique em Restaurar original.
+Se já instalou uma tradução anterior, restaure primeiro usando o instalador daquela versão. Este pacote não tenta sobrepor tabelas de idioma já modificadas por outra tradução.
+Se uma atualização da loja mudar os arquivos depois da tradução, o instalador preserva os arquivos e backups e pede que a situação seja resolvida antes de reaplicar.
+
+VALIDAÇÃO DESTA PRÉVIA
+Testada numa cópia da instalação v4887393 fornecida pelo usuário, com RPG_RT_Data.
+17.952 linhas de origem reconhecidas; ajustes para identificadores deslocados; inglês e japonês preservados.
+39 fontes bitmap recebem acentos. A fonte proporcional Softsquare é usada nos diálogos em português.
+133.475 objetos de recursos preservados integralmente; somente 79 objetos alterados.
+8.720 corpos de métodos do jogo preservados. Apenas os inicializadores de idiomas/fontes e a criação do seletor de idioma mudam.
+O jogo carregou a tabela em português e inicializou as fontes num teste automático sem interface gráfica.
+Instalação, reaplicação sem alterações e restauração exata dos originais verificadas.
+Esta cópia contém componentes modificados: o resultado não é homologação de todas as builds oficiais da Steam.
+Ainda não houve revisão visual da campanha nesta adaptação. Não é uma promessa de compatibilidade universal.
+
+A tradução é comunitária e não oficial. Ara Fell e seus recursos pertencem aos respectivos titulares.
+Este pacote contém ferramentas e textos de tradução; não contém os arquivos completos do jogo.
+Licenças das ferramentas acompanham runtime/LICENSE.txt, python-libs/*dist-info/ e docs/.

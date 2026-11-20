@@ -1,0 +1,50 @@
+name: Publicar instalador adaptavel corrigido
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'adaptavel/**'
+      - '.github/workflows/publicar-adaptavel.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: publicar-adaptavel
+  cancel-in-progress: false
+jobs:
+  publicar:
+    runs-on: windows-2022
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v6
+        with:
+          python-version: '3.12.10'
+      - name: Preparar pacote e testar janela
+        shell: pwsh
+        run: ./adaptavel/Build-Package.ps1
+      - name: Publicar pacote corrigido e retirar 6.1.1
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GH_REPO: ${{ github.repository }}
+          BUILD_COMMIT: ${{ github.sha }}
+        run: |
+          $ErrorActionPreference='Stop'
+          $tag='v6.2.0-preview.1'
+          gh release view $tag --json id 2>$null
+          if ($LASTEXITCODE -ne 0) {
+            gh release create $tag --target $env:BUILD_COMMIT --draft --prerelease --title 'Ara Fell PT-BR 6.2 — instalador adaptável corrigido (teste)' --notes-file adaptavel/RELEASE.md
+            if ($LASTEXITCODE -ne 0) { throw 'Falha ao criar publicacao' }
+          }
+          gh release upload $tag adaptavel/output/Ara-Fell-PTBR-6.2-adaptavel-corrigido.zip adaptavel/output/SHA256SUMS.txt --clobber
+          if ($LASTEXITCODE -ne 0) { throw 'Falha no upload; versao anterior preservada' }
+          $release = gh release view $tag --json assets | ConvertFrom-Json
+          $asset = $release.assets | Where-Object name -eq 'Ara-Fell-PTBR-6.2-adaptavel-corrigido.zip'
+          if (-not $asset -or $asset.size -lt 20000000) { throw 'Pacote ausente ou incompleto' }
+          gh release edit $tag --draft=false --prerelease --notes-file adaptavel/RELEASE.md
+          if ($LASTEXITCODE -ne 0) { throw 'Falha ao publicar; versao anterior preservada' }
+          gh release view v6.1.1 --json id 2>$null
+          if ($LASTEXITCODE -eq 0) {
+            gh release delete v6.1.1 --yes
+            if ($LASTEXITCODE -ne 0) { throw 'Nova versao publicada, mas exclusao da 6.1.1 falhou' }
+          }

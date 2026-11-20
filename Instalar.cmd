@@ -1,8 +1,4 @@
 @echo off
-setlocal
-powershell.exe -NoProfile -STA -ExecutionPolicy Bypass -File "%~dp0Instalar.ps1"
-if errorlevel 1 (
- echo.
- echo Nao foi possivel abrir o instalador. Consulte o LEIA-ME.txt.
- pause
-)
+echo Este ZIP contem o codigo-fonte. Baixe o instalador completo em:
+echo https://github.com/wlissesxz-code/traducao-ara-fell-ptbr/releases/tag/v6.2.0-preview.1
+pause
