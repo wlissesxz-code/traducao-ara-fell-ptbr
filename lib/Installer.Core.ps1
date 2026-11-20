@@ -7,14 +7,28 @@ function Resolve-GameData([string]$Folder) {
     if ([string]::IsNullOrWhiteSpace($Folder)) { throw 'Escolha a pasta do Ara Fell: Enhanced Edition.' }
     $full = [IO.Path]::GetFullPath([Environment]::ExpandEnvironmentVariables($Folder.Trim().Trim('"')))
     if (Test-Path -LiteralPath $full -PathType Leaf) { $full = Split-Path $full -Parent }
-    if ((Split-Path $full -Leaf) -ne 'Ara Fell_Data') { $full = Join-Path $full 'Ara Fell_Data' }
-    $root = Split-Path $full -Parent
-    foreach ($relative in @('data.unity3d','Managed\Assembly-CSharp.dll')) {
-        if (-not (Test-Path -LiteralPath (Join-Path $full $relative) -PathType Leaf)) { throw 'Esta pasta nao contem a Enhanced Edition para Windows. Selecione a pasta onde esta Ara Fell.exe.' }
+    $layouts = @(
+        @{Data='Ara Fell_Data'; Exe='Ara Fell.exe'},
+        @{Data='RPG_RT_Data'; Exe='RPG_RT.exe'}
+    )
+    $leaf = Split-Path $full -Leaf
+    $direct = @($layouts | Where-Object {$_.Data -eq $leaf})
+    $root = if ($direct.Count) { Split-Path $full -Parent } else { $full }
+    $matches = @()
+    foreach ($layout in $layouts) {
+        if ($direct.Count -and $layout.Data -ne $leaf) { continue }
+        $data = Join-Path $root $layout.Data
+        if ((Test-Path -LiteralPath (Join-Path $root $layout.Exe) -PathType Leaf) -and
+            (Test-Path -LiteralPath (Join-Path $data 'data.unity3d') -PathType Leaf) -and
+            (Test-Path -LiteralPath (Join-Path $data 'Managed\Assembly-CSharp.dll') -PathType Leaf)) {
+            $matches += $data
+        }
     }
-    if (-not (Test-Path -LiteralPath (Join-Path $root 'Ara Fell.exe') -PathType Leaf)) { throw 'Ara Fell.exe nao foi encontrado junto de Ara Fell_Data.' }
-    return $full
+    if ($matches.Count -eq 1) { return $matches[0] }
+    if ($matches.Count -gt 1) { throw 'Foram encontradas duas instalacoes. Selecione diretamente Ara Fell_Data ou RPG_RT_Data.' }
+    throw 'Nao foi encontrada a Enhanced Edition completa. Selecione a pasta do jogo ou Ara Fell_Data / RPG_RT_Data. A versao classica nao e compativel.'
 }
+
 function Find-SteamGames([string[]]$SteamRoots) {
     $libraries = New-Object 'System.Collections.Generic.HashSet[string]' ([StringComparer]::OrdinalIgnoreCase)
     foreach ($root in $SteamRoots) {
@@ -70,7 +84,7 @@ function Get-InstallPlan([string]$Folder) {
         $backup = $target + '.original-antes-ptbr.bak'
         $hash = Get-Sha256 $target
         if ($hash -notin @($entry.original,$entry.updated) + @($entry.previous)) {
-            throw ('Versao ainda nao homologada: '+$entry.path+"`r`nSHA-256: "+$hash+"`r`nNenhum arquivo foi alterado. Informe este codigo em uma issue no GitHub; nao force a instalacao.")
+            throw ('Versao ainda nao homologada: '+$entry.path+"`r`nSHA-256: "+$hash+"`r`nEsta versao dos arquivos ainda nao e compativel com este pacote. Nenhum arquivo foi alterado. Nao e necessario enviar codigos ou arquivos; aguarde um pacote que suporte esta versao.")
         }
         $base = $target
         if (Test-Path -LiteralPath $backup) {
@@ -93,7 +107,7 @@ function Invoke-Translation([string]$Folder,[ValidateSet('Instalar','Verificar',
     $plan = Get-InstallPlan $Folder
     Test-Package
     if ($Action -eq 'Verificar') { return ('Instalacao reconhecida. '+$(if (@($plan.Files | Where-Object {$_.Current -ne $_.Entry.updated}).Count -eq 0) {'A traducao completa ja esta aplicada.'} else {'Pronta para receber a traducao.'})) }
-    if (Get-Process -Name 'Ara Fell' -ErrorAction SilentlyContinue) { throw 'Feche o Ara Fell antes de continuar.' }
+    if (Get-Process -Name 'Ara Fell','RPG_RT','Legacy' -ErrorAction SilentlyContinue) { throw 'Feche o Ara Fell antes de continuar.' }
     if ($Action -eq 'Restaurar') { foreach ($item in $plan.Files) { if (-not (Test-Path -LiteralPath $item.Backup)) { throw 'Nao ha copia original para restaurar. Nenhum arquivo foi alterado.' } } }
     if ($Action -eq 'Instalar' -and @($plan.Files | Where-Object {$_.Current -ne $_.Entry.updated}).Count -eq 0) { return 'A traducao completa ja esta aplicada.' }
     $temporary = Join-Path $plan.Data ('.ara-fell-ptbr-'+[guid]::NewGuid().ToString('N'))

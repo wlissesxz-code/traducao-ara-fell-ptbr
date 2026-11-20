@@ -1,6 +1,8 @@
 ﻿param([string]$PastaJogo,[ValidateSet('Instalar','Verificar','Restaurar')][string]$Acao='Instalar',[switch]$SemInterface)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'lib\Installer.Core.ps1')
+. (Join-Path $PSScriptRoot 'lib\Download-Package.ps1')
+Initialize-Package
 if ($SemInterface) {
     try { Write-Output (Invoke-Translation $PastaJogo $Acao); exit 0 } catch { Write-Error $_.Exception.Message; exit 1 }
 }
@@ -20,7 +22,7 @@ $title.Font = New-Object Drawing.Font('Segoe UI',14,[Drawing.FontStyle]::Bold)
 $title.SetBounds(22,20,690,35)
 $form.Controls.Add($title)
 $help = New-Object Windows.Forms.Label
-$help.Text = "Escolha a pasta onde está Ara Fell.exe (Steam ou GOG).`r`nFeche o jogo antes de instalar. Seus jogos salvos não serão alterados."
+$help.Text = "Escolha a pasta do Ara Fell (Steam ou GOG).`r`nFeche o jogo antes de instalar. Seus jogos salvos não serão alterados."
 $help.SetBounds(22,65,680,50)
 $form.Controls.Add($help)
 $folder = New-Object Windows.Forms.ComboBox
@@ -47,7 +49,7 @@ $status.ReadOnly=$true
 $status.ScrollBars='Vertical'
 $status.BackColor=[Drawing.Color]::White
 $status.SetBounds(22,175,680,110)
-$status.Text="Versão 6.1.1 - tradução completa.`r`nGOG: testada. Steam: detecção disponível; aplicação condicionada à verificação dos arquivos.`r`nO patch recusa versões diferentes, sem alterar a instalação."
+$status.Text="Tradução 6.1.1 - instalador revisado para Steam.`r`nReconhece Ara Fell_Data e RPG_RT_Data. Compatibilidade verificada automaticamente.`r`nO patch recusa versões diferentes, sem alterar a instalação."
 $form.Controls.Add($status)
 $buttons=@()
 foreach ($item in @(@('Instalar tradução','Instalar',22,210),@('Verificar','Verificar',244,130),@('Restaurar original','Restaurar',386,170))) {

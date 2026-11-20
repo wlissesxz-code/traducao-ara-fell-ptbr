@@ -2,19 +2,23 @@
 
 Tradução comunitária completa para português do Brasil, com português como **terceira opção de idioma**, preservando inglês e japonês. Inclui história até o final, missões, menus, itens, equipamentos, habilidades e tutoriais. Fonte pixelada com acentos e correções de legibilidade.
 
-**[BAIXAR O INSTALADOR — última versão](https://github.com/wlissesxz-code/traducao-ara-fell-ptbr/releases/latest)**
+**[BAIXAR O INSTALADOR REVISADO — Steam e GOG](https://github.com/wlissesxz-code/traducao-ara-fell-ptbr/archive/refs/heads/main.zip)**
 
-Baixe o arquivo **Ara-Fell-PTBR-6.1.1-Windows.zip** em **Assets**. Os arquivos automáticos “Source code” são o código do projeto e não incluem os patches necessários para instalar.
+Extraia o ZIP acima e abra **Instalar.cmd**. Na primeira execução, ele baixa automaticamente os componentes da tradução 6.1.1 (aproximadamente 145 MB) e verifica sua integridade. É necessário acesso à internet nessa etapa. O pacote antigo da release 6.1.1 não contém esta correção de identificação da Steam.
 
 ## Instalação
 
 1. Feche o Ara Fell e extraia o ZIP inteiro em uma pasta.
 2. Abra **Instalar.cmd**.
-3. Selecione a pasta onde está **Ara Fell.exe**. O instalador procura instalações da Steam e da GOG; use **Procurar...** se a sua não aparecer.
+3. Selecione a pasta do jogo: **Ara Fell.exe / Ara Fell_Data** na GOG ou **RPG_RT.exe / RPG_RT_Data** na Steam. O instalador procura instalações da Steam e da GOG; use **Procurar...** se a sua não aparecer.
 4. Clique em **Verificar** e depois em **Instalar tradução**.
 5. Abra o jogo e selecione **Português (Brasil)** nas opções de idioma.
 
 Não é necessário instalar Python nem baixar ferramentas à parte. O instalador usa o Windows PowerShell que acompanha o Windows. O patch é aplicado localmente, sem enviar arquivos ou informações da sua instalação.
+
+## Correção do instalador para Steam — 20/11/2026
+
+Reconhece os nomes da Enhanced Edition na Steam sem renomear arquivos, bloqueia a instalação enquanto RPG_RT.exe estiver aberto e baixa os componentes ausentes automaticamente. A presença de Legacy.exe não impede a identificação. Mantém as verificações e os backups da versão anterior. Testes de estrutura simulada passaram; a build Steam continua sem teste independente em jogo.
 
 ## Compatibilidade
 
@@ -25,7 +29,7 @@ Não é necessário instalar Python nem baixar ferramentas à parte. O instalado
 | Traduções anteriores deste projeto, versões 4 e 5 | Atualização aceita quando a cópia de segurança original está íntegra |
 | Versão clássica em RPG Maker, Linux/macOS e consoles | Fora do escopo deste pacote |
 
-**A loja e o nome da pasta não bastam para provar compatibilidade.** O instalador compara os arquivos com as versões reconhecidas antes de escrever. Se a sua build Steam ou GOG for diferente, ele recusa a instalação e mostra o SHA-256. Abra uma [issue](https://github.com/wlissesxz-code/traducao-ara-fell-ptbr/issues/new) com a loja e esse código para solicitar suporte; não envie arquivos completos do jogo.
+**A loja e o nome da pasta não bastam para provar compatibilidade.** O instalador compara os arquivos com as versões reconhecidas antes de escrever. A verificação é automática: não é necessário calcular ou enviar códigos ou arquivos. Se a sua build Steam ou GOG for diferente das suportadas, ele recusa a instalação sem modificar o jogo. A correção de identificação não acrescenta suporte a binários de builds desconhecidas.
 
 ## Restaurar o original
 
